@@ -153,7 +153,6 @@ namespace API_Library
 
             [JsonIgnore]
             public string SpeedString => Speed.ToString("0.#", CultureInfo.InvariantCulture);
-
         }
 
         // Класс для хранения информации о солнце
