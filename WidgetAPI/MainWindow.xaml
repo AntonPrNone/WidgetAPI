@@ -1,0 +1,16 @@
+﻿<Window x:Class="WidgetAPI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WidgetAPI"
+        mc:Ignorable="d"
+        Title="Widget" Height="1080" Width="800" Background="#333333">
+    <Grid>
+        <TextBlock x:Name="TbWeeklyTemperature" TextWrapping="Wrap" Text="TextBlock" Height="1021" Width="246" TextAlignment="Center" Foreground="White" HorizontalAlignment="Right" Margin="0,0,100,0"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="32,96,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.586,-6.647" Click="Button2_ClickAsync"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="32,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.586,-6.647" Click="Button_ClickAsync"/>
+        <TextBlock x:Name="TbCurrentWeather" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" Height="998" Width="171" TextAlignment="Center" Foreground="White" Margin="100,0,0,0"/>
+        <Image x:Name="ImgBox" HorizontalAlignment="Left" Height="50" Margin="342,135,0,0" VerticalAlignment="Top" Width="50"/>
+    </Grid>
+</Window>
