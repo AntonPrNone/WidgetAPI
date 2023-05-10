@@ -31,19 +31,18 @@ namespace API_Library
         [JsonProperty("wind")]
         public Wind WindInfo { get; set; }
 
-        // Видимость (в метрах)
+        // Видимость (в километрах)
         [JsonProperty("visibility")]
         public int Visibility { get; set; }
+        public double VisibilityString => Visibility / 1000;
 
         // Время расчета данных (Unix, UTC)
         [JsonProperty("dt")]
         public long Dt { get; set; }
 
         [JsonIgnore]
-        public DateTime DateTime => DateTimeOffset.FromUnixTimeSeconds(Dt).DateTime;
+        public TimeSpan DateTime => TimeZoneInfo.ConvertTimeFromUtc(DateTimeOffset.FromUnixTimeSeconds(Dt).DateTime, TimeZoneInfo.Local).TimeOfDay;  
 
-        [JsonIgnore]
-        public string DayOfWeek => CultureInfo.CurrentCulture.TextInfo.ToTitleCase(DateTime.ToString("dddd", new CultureInfo("ru-RU")));
 
         // Информация о солнце
         [JsonProperty("sys")]
@@ -112,28 +111,28 @@ namespace API_Library
             public double Temperature { get; set; } = double.NaN;
 
             [JsonIgnore]
-            public string TemperatureString => Temperature.ToString("0.#", CultureInfo.InvariantCulture) + "°";
+            public int TemperatureString => (int)Math.Round(Temperature);
 
             // Температура по ощущениям (в градусах Цельсия)
             [JsonProperty("feels_like")]
             public double FeelsLikeTemperature { get; set; } = double.NaN;
 
             [JsonIgnore]
-            public string FeelsLikeTemperatureString => FeelsLikeTemperature.ToString("0.#", CultureInfo.InvariantCulture) + "°";
+            public int FeelsLikeTemperatureString => (int)Math.Round(FeelsLikeTemperature);
 
             // Минимальная температура (в градусах Цельсия)
             [JsonProperty("temp_min")]
             public double MinTemperature { get; set; } = double.NaN;
 
             [JsonIgnore]
-            public string MinTemperatureString => MinTemperature.ToString("0.#", CultureInfo.InvariantCulture) + "°";
+            public int MinTemperatureString => (int)Math.Round(MinTemperature);
 
             // Максимальная температура (в градусах Цельсия)
             [JsonProperty("temp_max")]
             public double MaxTemperature { get; set; } = double.NaN;
 
             [JsonIgnore]
-            public string MaxTemperatureString => MaxTemperature.ToString("0.#", CultureInfo.InvariantCulture) + "°";
+            public int MaxTemperatureString => (int)Math.Round(MaxTemperature);
 
             // Влажность (в процентах)
             [JsonProperty("humidity")]
@@ -162,9 +161,15 @@ namespace API_Library
             [JsonProperty("sunrise")]
             public long Sunrise { get; set; }
 
+            [JsonIgnore]
+            public TimeSpan SunriseDateTime => TimeZoneInfo.ConvertTimeFromUtc(DateTimeOffset.FromUnixTimeSeconds(Sunrise).DateTime, TimeZoneInfo.Local).TimeOfDay;
+
             // Время заката (Unix, UTC)
             [JsonProperty("sunset")]
             public long Sunset { get; set; }
+
+            [JsonIgnore]
+            public TimeSpan SunsetDateTime => TimeZoneInfo.ConvertTimeFromUtc(DateTimeOffset.FromUnixTimeSeconds(Sunset).DateTime, TimeZoneInfo.Local).TimeOfDay;
         }
     }
 }

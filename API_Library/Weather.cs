@@ -15,13 +15,15 @@ namespace API_Library
         private readonly string _country;
         private readonly string _city;
         private readonly string _units;
+        private readonly int _days;
 
-        public Weather(string apiKey = "bb422a0ecd67bfdb79b4808c42eafd12", string country = "Russia", string city = "Kazan", string units = "metric")
+        public Weather(string apiKey = "bb422a0ecd67bfdb79b4808c42eafd12", string country = "Russia", string city = "Kazan", string units = "metric", int days = 5)
         {
             _apiKey = apiKey;
             _country = country;
             _city = city;
             _units = units;
+            _days = days;
         }
 
         public async Task<CurrentWeather> GetCurrentWeatherAsync()
@@ -41,11 +43,11 @@ namespace API_Library
             }
         }
 
-        public async Task<WeeklyWeather> GetWeeklyTemperatureAsync()
+        public async Task<WeeklyWeather> GetWeeklyWeatherAsync()
         {
             using (var httpClient = new HttpClient())
             {
-                var url = $"https://api.openweathermap.org/data/2.5/forecast?q={_city},{_country}&units={_units}&lang=ru&appid={_apiKey}";
+                var url = $"https://api.openweathermap.org/data/2.5/forecast?q={_city},{_country}&cnt={_days}&units={_units}&lang=ru&appid={_apiKey}";
                 var response = await httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -57,5 +59,6 @@ namespace API_Library
                 return null;
             }
         }
+
     }
 }
