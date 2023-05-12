@@ -1,0 +1,68 @@
+﻿<Window x:Class="WidgetAPI.NewsWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WidgetAPI"
+        mc:Ignorable="d"
+        Title="NewsWidget" Height="630" Width="700" 
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border Width="auto" Height="auto" BorderBrush="Blue" BorderThickness="2"
+                    CornerRadius="30,30,30,30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Border CornerRadius="30,30,0,0" Background="#7F0E0029" MouseDown="OnMouseLeftButtonDown">
+                    <Grid>
+                        <TextBlock Text="News" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
+                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Background="#7F000000" CornerRadius="0,0,30,30">
+                    <Grid>
+                        <Border BorderThickness="0.5,0.5,3,3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10" CornerRadius="5,5,5,5" BorderBrush="Red" Width="500">
+                            <StackPanel VerticalAlignment="Center" Margin="5,5,5,5">
+                                <Image x:Name="ImgTitile_Image" Source="/img/346838097353824.jpg"/>
+                                <TextBlock x:Name="Title_TextBlock" Text="Минобороны Британии подтвердило поставки Киеву ракет Storm Shadow" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" FontSize="24"/>
+                                <TextBlock x:Name="Description_TextBlock" Text="Ракеты Storm Shadow, которые имеют дальность полета более 250 км, позволят Украине оттеснить российские войска, заявил глава Минобороны Британии Уоллес. В Кремле подчеркнули, что это потребует адекватного ответа от России" Foreground="White" TextWrapping="Wrap" Margin="0,10,0,0" FontSize="16"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <TextBlock Text="Читать дальше на =&gt;" Foreground="White" FontSize="14" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <TextBlock Foreground="White" FontSize="14" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2,0,0,0">
+                                        <Hyperlink x:Name="AutorUrl_Hyperlink" NavigateUri="https://www.example.com/">RBK</Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
+                                <TextBlock x:Name="PublishedAt_TextBlock" Text="2023.05.11 11:56:18" Foreground="White" FontSize="14" TextAlignment="Right" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+                        <Image x:Name="Back_Image" Source="/img/icons8-назад-64 (1).png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80" Height="80" Margin="9,0,0,0" RenderTransformOrigin="0.5,0.5" Cursor="Hand" MouseLeftButtonDown="Back_Image_MouseLeftButtonDown">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Image x:Name="Forward_Image" Source="/img/icons8-назад-64 (1).png" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Height="80" RenderTransformOrigin="0.5,0.5" Cursor="Hand" MouseLeftButtonDown="Forward_Image_MouseLeftButtonDown" Margin="0,0,9,0">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock x:Name="Progress_TextBlock" Foreground="#7FFFFFFF" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="0 / 0" Margin="0,0,0,10" FontSize="16"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

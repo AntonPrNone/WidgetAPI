@@ -17,13 +17,13 @@ namespace WidgetAPI
     public partial class WeatherWidget : Window
     {
         private Timer _timer;
-        Weather weather;
+        WeatherAPILogic weather;
         string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogPas.txt");
         string userName;
         string password;
         User user;
         CurrentWeather resultCurrent;
-        WeeklyWeather resultWeekly;
+        ThreeHoursWeather resultWeekly;
 
         public WeatherWidget()
         {
@@ -44,7 +44,7 @@ namespace WidgetAPI
             password = File.ReadAllLines(path)[1];
             user = await MongoDbClient.GetUserAsync(userName);
             if (user.Password != password) Error();                
-            weather = new Weather(country: user.Country, city: user.City, units: user.Units.Split(' ')[0].ToLower());
+            weather = new WeatherAPILogic(country: user.Country, city: user.City, units: user.Units.Split(' ')[0].ToLower());
 
             await UpdateDataFromApi();
         }

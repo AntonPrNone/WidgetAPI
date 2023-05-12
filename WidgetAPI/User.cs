@@ -12,13 +12,14 @@ namespace WidgetAPI
         public string Password { get; set; }
         public string Units { get; set; }
         public string Country { get; set; }
+        public string CountryAbr { get; set; }
         public string City { get; set; }
         public Dictionary<string, bool> WidgetsOfInterest { get; set; } = new Dictionary<string, bool>
         {
             { "Time", true },
             { "Weather", true },
             { "Currency", true },
-            { "News", true }
+            { "NewsWin", true }
         };
     }
 }

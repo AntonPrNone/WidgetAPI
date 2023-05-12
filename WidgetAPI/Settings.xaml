@@ -68,6 +68,10 @@
                                 <TextBlock Text="Город" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" />
                                 <TextBox x:Name="City_TextBox"  VerticalAlignment="Center" Margin="5,5,5,5" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Страна"/>
                             </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="3">
+                                <TextBlock Text="Аббревиатура страны" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" />
+                                <TextBox x:Name="CountryAbr_TextBox"  VerticalAlignment="Center" Margin="5,5,5,5" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Страна" Width="50" Text="ru"/>
+                            </StackPanel>
                             <Button x:Name="Save_Button" Content="Сохранить" Command="{Binding SaveCommand}" Grid.Row="4" Grid.ColumnSpan="2" Margin="30,15,30,15" Click="Save_Button_ClickAsync" IsDefault="True"/>
                         </Grid>
                     </Grid>

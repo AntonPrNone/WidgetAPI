@@ -27,7 +27,7 @@
                     </Grid>
                 </Border>
 
-                <Border Grid.Row="1" CornerRadius="0,0,30,30" Background="#7F171717">
+                <Border Grid.Row="1" CornerRadius="0,0,30,30" Background="#7F000000">
                     <Grid>
                         <StackPanel Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">

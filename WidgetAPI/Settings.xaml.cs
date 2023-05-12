@@ -58,6 +58,7 @@ namespace WidgetAPI
 
                 Сountry_TextBox.Text = user.Country;
                 City_TextBox.Text = user.City;
+                if (user.CountryAbr != null && user.CountryAbr != "") CountryAbr_TextBox.Text = user.CountryAbr;
 
                 // использовать данные пользователя для настройки виджетов
                 foreach (var widget in checki)
@@ -101,6 +102,7 @@ namespace WidgetAPI
             user.Units = ((ContentControl)Units_ComboBox.SelectedItem).Content != null ? ((ContentControl)Units_ComboBox.SelectedItem).Content.ToString() : "";
             user.Country = Сountry_TextBox.Text;
             user.City = City_TextBox.Text;
+            user.CountryAbr = CountryAbr_TextBox.Text;
 
             foreach (var widget in checki)
             {
@@ -109,8 +111,8 @@ namespace WidgetAPI
 
             await MongoDbClient.ReplaceUserAsync(user);
 
-            WeatherWidget weatherWidget = new WeatherWidget();
-            weatherWidget.Show();
+            NewsWin newsWin = new NewsWin();
+            newsWin.Show();
             this.Close();
         }
 
