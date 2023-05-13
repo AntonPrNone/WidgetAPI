@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Timers;
 using System.Windows;
@@ -98,6 +99,7 @@ namespace WidgetAPI
 			Title_TextBlock.Text = news[active].Title;
 			Description_TextBlock.Text = news[active].Description;
 			AutorUrl_Hyperlink.NavigateUri = new Uri(news[active].Url);
+			Autor_TextBlock.Text = news[active].Author;
 			PublishedAt_TextBlock.Text = news[active].PublishedAt.ToString();
 		}
 		private void Error()	
@@ -140,5 +142,11 @@ namespace WidgetAPI
 			else
 				UpdateData(active = count - 1);
 		}
-	}
+
+        private void AutorUrl_Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
+    }
 }

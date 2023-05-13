@@ -166,6 +166,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CatWidget.xaml.cs">
+      <DependentUpon>CatWidget.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CurrencyWidget.xaml.cs">
       <DependentUpon>CurrencyWidget.xaml</DependentUpon>
     </Compile>
@@ -180,6 +183,10 @@
     <Compile Include="WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
+    <Page Include="CatWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CurrencyWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

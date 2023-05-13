@@ -52,6 +52,7 @@ namespace WidgetAPI
         }
         private async Task UpdateDataFromApi()
         {
+            abc.Text = "Обновляется...";
             currency = await new CurrencyAPILogic().GetExchangeRateAsync(user.From_CurrencyCode, user.To_CurrencyCode);
 
             Dispatcher.Invoke(() =>
@@ -65,6 +66,7 @@ namespace WidgetAPI
                 AskPrice_TextBlock.Text = currency.ExchangeRate.AskPriceString;
                 LastRefreshed_TextBlock.Text = currency.ExchangeRate.LastRefreshed.ToString("HH\\:mm\\:ss");
             });
+            abc.Text = "Обновление в";
         }
 
         private void Error()

@@ -4,6 +4,8 @@ using System.Windows.Input;
 using System.IO;
 using System.Windows.Controls;
 using System.Threading.Tasks;
+using API_Library;
+
 namespace WidgetAPI
 {
     /// <summary>
@@ -115,13 +117,15 @@ namespace WidgetAPI
 
             await MongoDbClient.ReplaceUserAsync(user);
 
-            //NewsWidget newsWin = new NewsWidget();
-            //WeatherWidget weatherWidget = new WeatherWidget();
+            CatWidget catWidget = new CatWidget();
+            WeatherWidget weatherWidget = new WeatherWidget();
+            NewsWidget news = new NewsWidget();
             CurrencyWidget currencyWidget = new CurrencyWidget();
-            await Task.Delay(5000);
+
+            catWidget.Show();
+            weatherWidget.Show();
+            news.Show();
             currencyWidget.Show();
-            //newsWin.Show();
-            //weatherWidget.Show();
             this.Close();
         }
 

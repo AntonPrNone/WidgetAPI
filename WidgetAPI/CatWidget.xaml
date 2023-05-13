@@ -1,0 +1,35 @@
+﻿<Window x:Class="WidgetAPI.CatWidget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WidgetAPI"
+        mc:Ignorable="d"
+        Title="CatsWidget" Height="300" Width="300" 
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Border Width="auto" Height="auto" BorderBrush="Blue" BorderThickness="2"
+                    CornerRadius="30,30,30,30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Border CornerRadius="30,30,0,0" Background="#7F0E0029" MouseDown="OnMouseLeftButtonDown">
+                    <Grid>
+                        <TextBlock Text="Cats" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
+                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Background="#7F000000" CornerRadius="0,0,30,30">
+                    <Grid>
+                        <Image x:Name="Cat_Image" Height="240"/>
+                        <Image x:Name="Refrash_Image" Source="/img/Refrash.png" Height="30" Cursor="Hand" MouseLeftButtonDown="Refrash_Image_MouseLeftButtonDownAsync" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10" Width="30"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
