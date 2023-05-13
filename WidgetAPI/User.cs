@@ -14,12 +14,15 @@ namespace WidgetAPI
         public string Country { get; set; }
         public string CountryAbr { get; set; }
         public string City { get; set; }
+        public string From_CurrencyCode  { get; set; }
+        public string To_CurrencyCode  { get; set; }
+
         public Dictionary<string, bool> WidgetsOfInterest { get; set; } = new Dictionary<string, bool>
         {
             { "Time", true },
             { "Weather", true },
             { "Currency", true },
-            { "NewsWin", true }
+            { "NewsWidget", true }
         };
     }
 }

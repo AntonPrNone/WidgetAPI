@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Currency.cs" />
+    <Compile Include="CurrencyAPILogic.cs" />
     <Compile Include="News.cs" />
     <Compile Include="NewsAPILogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

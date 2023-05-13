@@ -166,8 +166,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="News.xaml.cs">
-      <DependentUpon>News.xaml</DependentUpon>
+    <Compile Include="CurrencyWidget.xaml.cs">
+      <DependentUpon>CurrencyWidget.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewsWidget.xaml.cs">
+      <DependentUpon>NewsWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="qwerty.cs" />
     <Compile Include="Settings.xaml.cs">
@@ -177,6 +180,10 @@
     <Compile Include="WeatherWidget.xaml.cs">
       <DependentUpon>WeatherWidget.xaml</DependentUpon>
     </Compile>
+    <Page Include="CurrencyWidget.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,7 +196,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="News.xaml">
+    <Page Include="NewsWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,8 +262,7 @@
     <Resource Include="img\Pressure.png" />
     <Resource Include="img\Refrash.png" />
     <Resource Include="img\346838097353824.jpg" />
-    <Resource Include="icons8-назад-80.png" />
-    <Resource Include="img\icons8-назад-64 %281%29.png" />
+    <Resource Include="img\back.png" />
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

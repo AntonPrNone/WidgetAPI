@@ -59,6 +59,8 @@ namespace WidgetAPI
                 Сountry_TextBox.Text = user.Country;
                 City_TextBox.Text = user.City;
                 if (user.CountryAbr != null && user.CountryAbr != "") CountryAbr_TextBox.Text = user.CountryAbr;
+                if (user.From_CurrencyCode != null && user.From_CurrencyCode != "") From_Currency_Code_TextBox.Text = user.From_CurrencyCode;
+                if (user.To_CurrencyCode != null && user.To_CurrencyCode != "") To_Currency_Code_TextBox.Text = user.To_CurrencyCode;
 
                 // использовать данные пользователя для настройки виджетов
                 foreach (var widget in checki)
@@ -103,6 +105,8 @@ namespace WidgetAPI
             user.Country = Сountry_TextBox.Text;
             user.City = City_TextBox.Text;
             user.CountryAbr = CountryAbr_TextBox.Text;
+            user.From_CurrencyCode = From_Currency_Code_TextBox.Text;
+            user.To_CurrencyCode = To_Currency_Code_TextBox.Text;
 
             foreach (var widget in checki)
             {
@@ -111,8 +115,13 @@ namespace WidgetAPI
 
             await MongoDbClient.ReplaceUserAsync(user);
 
-            NewsWin newsWin = new NewsWin();
-            newsWin.Show();
+            //NewsWidget newsWin = new NewsWidget();
+            //WeatherWidget weatherWidget = new WeatherWidget();
+            CurrencyWidget currencyWidget = new CurrencyWidget();
+            await Task.Delay(5000);
+            currencyWidget.Show();
+            //newsWin.Show();
+            //weatherWidget.Show();
             this.Close();
         }
 

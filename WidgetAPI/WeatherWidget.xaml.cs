@@ -36,8 +36,7 @@ namespace WidgetAPI
             _timer.AutoReset = true;
             _timer.Enabled = true;
         }
-
-
+        
         private async void GetUser()
         {
             userName = File.ReadAllLines(path)[0];
@@ -69,9 +68,15 @@ namespace WidgetAPI
         {
             // Здесь вызываем методы для получения данных из API
             // и обновляем соответствующие элементы интерфейса
-            
-            resultCurrent = await weather.GetCurrentWeatherAsync();
-            resultWeekly = await weather.GetWeeklyWeatherAsync();
+
+            Task<CurrentWeather> getCurrentWeatherTask = weather.GetCurrentWeatherAsync();
+            Task<ThreeHoursWeather> getWeeklyWeatherTask = weather.GetWeeklyWeatherAsync();
+
+            await Task.WhenAll(getCurrentWeatherTask, getWeeklyWeatherTask);
+
+            resultCurrent = await getCurrentWeatherTask;
+            resultWeekly = await getWeeklyWeatherTask;
+
 
             if (user.Units.Split(' ')[0] == "Metric")
             {
