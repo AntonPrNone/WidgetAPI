@@ -73,6 +73,7 @@ namespace WidgetAPI
 
                 if (!LOGReg) await MongoDbClient.AddUserAsync(new User() { Login = Login_TextBox.Text, Password = Password_TextBox.Password });
                 Settings settingsWindow = new Settings();
+                await AnimationHelper.FadeOut2Async(this);
                 settingsWindow.Show();
                 this.Close();
             }

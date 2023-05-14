@@ -168,11 +168,12 @@ namespace WidgetAPI
             this.Hide();
 		}
 
-		private void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+		private async void Image_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
 		{
 			File.WriteAllText(path, string.Empty);
 			MainWindow mainWindow = new MainWindow();
-			mainWindow.Show();
+            await AnimationHelper.FadeOut2Async(this);
+            mainWindow.Show();
 			this.Close();
 		}
 

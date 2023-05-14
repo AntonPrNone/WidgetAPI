@@ -2,64 +2,73 @@
 using System.Windows;
 using System.IO;
 
-
 namespace WidgetAPI
 {
-	/// <summary>
-	/// Логика взаимодействия для AutoLog.xaml
-	/// </summary>
-	public partial class AutoLog : Window
-	{
-		string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogPas.txt");
-		string string1;
-		string string2;
-        Settings settingsWindow = new Settings();
-		MainWindow mainWindow = new MainWindow();
+    /// <summary>
+    /// Класс окна автоматической авторизации пользователя
+    /// </summary>
+    public partial class AutoLog : Window
+    {
+        // Путь к файлу, содержащему логин и пароль пользователя
+        readonly string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogPas.txt"); 
+        readonly string login;
+        readonly string password; 
+                                  
         public AutoLog()
         {
             InitializeComponent();
+            this.Hide();
 
-            if (File.Exists(path))
+            // Если файл существует и содержит не менее двух строк
+            if (File.Exists(path) && File.ReadAllLines(path).Length >= 2)
             {
                 string[] fileContents = File.ReadAllLines(path);
-                if (fileContents.Length >= 2)
-                {
-                    string1 = fileContents[0];
-                    string2 = fileContents[1];
-                    ValidationCheck();
-                }
-
-                else
-                {
-                    // обработать ситуацию, когда файл не содержит логина и пароля
-                    settingsWindow.Close();
-                    mainWindow.Show();
-                }
+                login = fileContents[0];
+                password = fileContents[1];
+                ValidationCheck();
             }
 
             else
             {
-                // обработать ситуацию, когда файл не существует
-                settingsWindow.Close();
-                mainWindow.Show();
+                ShowMainWindow();
+                this.Close();
             }
-
-            this.Close(); 
         }
 
-        private async void ValidationCheck()
+        private async void ValidationCheck() // Метод проверки валидности логина и пароля пользователя
         {
-            var user = await MongoDbClient.GetUserAsync(string1);
-            if (user != null && string2 == user.Password)
+            try
             {
-                mainWindow.Close();
-                settingsWindow.Show();
+                var user = await MongoDbClient.GetUserAsync(login);
+
+                // Если пользователь существует и пароль совпадает, открываем окно настроек
+                if (user != null && password == user.Password)
+                {
+                    Settings settingsWindow = new Settings();
+                    settingsWindow.Show();
+                }
+
+                // Иначе открываем окно авторизации
+                else
+                {
+                    ShowMainWindow();
+                }
+
+                this.Close();
             }
-            else
+
+            // Обрабатываем исключение, возникающее через 30 секунд после отсутствия ответа от сервера
+            catch (Exception)
             {
-                settingsWindow.Close();
-                mainWindow.Show();
+                MessageBox.Show("Проверьте статус сервера БД", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
             }
+        }
+
+        private void ShowMainWindow()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
     }
 }
