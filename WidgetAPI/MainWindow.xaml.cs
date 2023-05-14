@@ -21,28 +21,7 @@ namespace WidgetAPI
         public MainWindow()
         {
             InitializeComponent();
-
-            if (File.Exists(path))
-            {
-                string[] fileContents = File.ReadAllLines(path);
-
-                if (fileContents.Length >= 2)
-                {
-                    Login_TextBox.Text = fileContents[0];
-                    Password_TextBox.Password = fileContents[1];
-                    Log_Button_ClickAsync(null, null);
-                }
-
-                else
-                {
-                    // обработать ситуацию, когда файл не содержит логина и пароля
-                }
-            }
-            else
-            {
-                // обработать ситуацию, когда файл не существует
-            }
-        }   
+        }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -63,7 +42,6 @@ namespace WidgetAPI
                     Dispatcher.Invoke(LogInterface);
             }
         }
-
 
         private void RegInterface()
         {
@@ -125,8 +103,14 @@ namespace WidgetAPI
                 }
             }
         }
-        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.FadeIn();
+        }
+        private async void Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e)
+        {
+            await AnimationHelper.FadeOut2Async(this);
+
             Close();
         }
     }

@@ -19,7 +19,7 @@ namespace WidgetAPI
 
         public Dictionary<string, bool> WidgetsOfInterest { get; set; } = new Dictionary<string, bool>
         {
-            { "Time", true },
+            { "Cats", true },
             { "Weather", true },
             { "Currency", true },
             { "NewsWidget", true }

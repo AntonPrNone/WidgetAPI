@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:WidgetAPI"
         mc:Ignorable="d"
         Title="CurrencyWidget" Height="210" Width="350" 
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="White">
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="White" Loaded="Window_Loaded" ShowInTaskbar="False">
     <Grid>
-        <Border Width="auto" Height="auto" BorderBrush="LimeGreen" BorderThickness="2"
+        <Border Width="auto" Height="auto" BorderBrush="Red" BorderThickness="2"
                     CornerRadius="30,30,30,30">
             <Grid>
                 <Grid.RowDefinitions>
@@ -16,10 +16,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="30,30,0,0" Background="#7F0E0029" MouseDown="OnMouseLeftButtonDown">
+                <Border CornerRadius="30,30,0,0" Background="#19FF0000" MouseDown="OnMouseLeftButtonDown">
                     <Grid>
                         <TextBlock Text="Валюта" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
-                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDownAsync"/>
                     </Grid>
                 </Border>
 

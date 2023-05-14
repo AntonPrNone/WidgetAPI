@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WidgetAPI"
         mc:Ignorable="d"
         Title="NewsWidget" Height="630" Width="700" 
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ShowInTaskbar="False">
     <Grid>
         <Border Width="auto" Height="auto" BorderBrush="Blue" BorderThickness="2"
                     CornerRadius="30,30,30,30">
@@ -16,10 +16,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="30,30,0,0" Background="#7F0E0029" MouseDown="OnMouseLeftButtonDown">
+                <Border CornerRadius="30,30,0,0" Background="#190000FF" MouseDown="OnMouseLeftButtonDown">
                     <Grid>
                         <TextBlock Text="News" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
-                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDownAsync"/>
                     </Grid>
                 </Border>
 

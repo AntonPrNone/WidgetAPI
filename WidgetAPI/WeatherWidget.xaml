@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WidgetAPI" xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="WeatherWidget" Height="275" Width="400" 
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ShowInTaskbar="False">
     <Window.Resources>
         <system:String x:Key="TempMM">°C</system:String>
     </Window.Resources>
@@ -20,10 +20,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="30,30,0,0" Background="#7F0E0029" MouseDown="OnMouseLeftButtonDown">
+                <Border CornerRadius="30,30,0,0" Background="#1932CD32" MouseDown="OnMouseLeftButtonDown">
                     <Grid>
                         <TextBlock Text="Погода" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
-                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDownAsync"/>
                     </Grid>
                 </Border>
 
@@ -67,7 +67,7 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="Обновление в" Foreground="#FFAFAFAF" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="abc" Text="Обновление в" Foreground="#FFAFAFAF" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock x:Name="Dt_TextBlock" Text="12:00" Foreground="White" Margin="0,0,4,0"/>
                                     <Image x:Name="Refrash_Image" Source="/img/Refrash.png" Width="15" Height="15" Cursor="Hand" MouseLeftButtonDown="Refrash_Image_MouseLeftButtonDownAsync"/>

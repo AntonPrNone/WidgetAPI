@@ -6,9 +6,15 @@
         xmlns:local="clr-namespace:WidgetAPI"
         mc:Ignorable="d"
         Title="CatsWidget" Height="300" Width="300" 
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ShowInTaskbar="False">
+    <Window.Resources>
+        <Storyboard x:Key="ClosingAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
+
     <Grid>
-        <Border Width="auto" Height="auto" BorderBrush="Blue" BorderThickness="2"
+        <Border Width="auto" Height="auto" BorderBrush="#FF7F00FF" BorderThickness="2"
                     CornerRadius="30,30,30,30">
             <Grid>
                 <Grid.RowDefinitions>
@@ -16,10 +22,10 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Border CornerRadius="30,30,0,0" Background="#7F0E0029" MouseDown="OnMouseLeftButtonDown">
+                <Border CornerRadius="30,30,0,0" Background="#197F00FF" MouseDown="OnMouseLeftButtonDown">
                     <Grid>
                         <TextBlock Text="Cats" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
-                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                        <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDownAsync"/>
                     </Grid>
                 </Border>
 

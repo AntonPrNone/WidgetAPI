@@ -99,4 +99,24 @@ namespace WidgetAPI
         //}
     }
 }
+
+
+
+// Получаем размеры экрана
+                var screenBounds = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+
+                // Проверяем размеры окна
+                if (this.Width == screenBounds.Width && this.Height == screenBounds.Height)
+                {
+                    // Мы находимся на рабочем столе
+					Hide();
+                    Topmost = true;
+                }
+                
+				else
+				{
+					Topmost = false;
+				}
+
+
 */
