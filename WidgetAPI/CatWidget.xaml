@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WidgetAPI"
         mc:Ignorable="d"
-        Title="CatsWidget" Height="300" Width="300" 
+        Title="CatWidget" Height="300" Width="300" 
         AllowsTransparency="True" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" ShowInTaskbar="False">
     <Window.Resources>
         <Storyboard x:Key="ClosingAnimation">

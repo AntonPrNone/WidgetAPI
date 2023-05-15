@@ -27,9 +27,6 @@ namespace API_Library
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(url);
-                if (!response.IsSuccessStatusCode)
-                    throw new HttpRequestException($"Failed to retrieve exchange rate for {fromCurrency}-{toCurrency}.");
-
                 var json = await response.Content.ReadAsStringAsync();
                 var result = JsonConvert.DeserializeObject<AlphaVantageResponse>(json);
                 return result;

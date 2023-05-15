@@ -27,7 +27,7 @@
                     <Grid>
                         <Border BorderThickness="0.5,0.5,3,3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,10,10" CornerRadius="5,5,5,5" BorderBrush="Red" Width="500">
                             <StackPanel VerticalAlignment="Center" Margin="5,5,5,5">
-                                <Image x:Name="ImgTitile_Image" Source="/img/346838097353824.jpg"/>
+                                <Image x:Name="ImgTitile_Image" Source="/img/newsImg.jpg"/>
                                 <TextBlock x:Name="Title_TextBlock" Text="Минобороны Британии подтвердило поставки Киеву ракет Storm Shadow" TextWrapping="Wrap" Foreground="White" TextAlignment="Center" FontWeight="Bold" FontSize="24"/>
                                 <TextBlock x:Name="Description_TextBlock" Text="Ракеты Storm Shadow, которые имеют дальность полета более 250 км, позволят Украине оттеснить российские войска, заявил глава Минобороны Британии Уоллес. В Кремле подчеркнули, что это потребует адекватного ответа от России" Foreground="White" TextWrapping="Wrap" Margin="0,10,0,0" FontSize="16"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">

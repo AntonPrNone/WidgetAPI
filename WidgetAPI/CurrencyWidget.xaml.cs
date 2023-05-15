@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -22,7 +21,6 @@ namespace WidgetAPI
 
         string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "LogPas.txt");
         string userName;
-        string password;
 
         public CurrencyWidget()
         {
@@ -30,58 +28,69 @@ namespace WidgetAPI
 
             GetUser();
 
+            // Создание таймера обновления
             _timer = new Timer();
             _timer.Interval = TimeSpan.FromSeconds(5 * 60).TotalMilliseconds;
             _timer.Elapsed += OnTimerElapsed;
             _timer.Start();
-
         }
 
-        private async void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        private async void OnTimerElapsed(object sender, ElapsedEventArgs e) // Обновление по таймеру
         {
             await UpdateDataFromApi();
         }
 
-
-        private async void GetUser()
+        private async void GetUser() // Получение конфигурации пользователя
         {
             var lines = File.ReadAllLines(path);
             userName = lines[0];
-            password = lines[1];
             user = await MongoDbClient.GetUserAsync(userName);
-            if (user.Password != password) Error();
             await UpdateDataFromApi();
         }
-        private async Task UpdateDataFromApi()
+        private async Task UpdateDataFromApi() // Обновление данных
         {
             abc.Text = "Обновляется...";
-            currency = await new CurrencyAPILogic().GetExchangeRateAsync(user.From_CurrencyCode, user.To_CurrencyCode);
-
-            Dispatcher.Invoke(() =>
+            try
             {
-                From_CurrencyCode_TextBlock.Text = currency.ExchangeRate.FromCurrencyCode;
-                To_CurrencyCode_TextBlock.Text = currency.ExchangeRate.ToCurrencyCode;
-                From_CurrencyName_TextBlock.Text = $"({currency.ExchangeRate.FromCurrencyName})";
-                To_CurrencyName_TextBlock.Text = $"({currency.ExchangeRate.ToCurrencyName})";
-                Rate_TextBlock.Text = currency.ExchangeRate.RateString;
-                BidPrice_TextBlock.Text = currency.ExchangeRate.BidPriceString;
-                AskPrice_TextBlock.Text = currency.ExchangeRate.AskPriceString;
-                LastRefreshed_TextBlock.Text = currency.ExchangeRate.LastRefreshed.ToString("HH\\:mm\\:ss");
-            });
+                currency = await new CurrencyAPILogic().GetExchangeRateAsync(user.From_CurrencyCode, user.To_CurrencyCode);
+
+                if (currency.ExchangeRate != null)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        From_CurrencyCode_TextBlock.Text = currency.ExchangeRate.FromCurrencyCode;
+                        To_CurrencyCode_TextBlock.Text = currency.ExchangeRate.ToCurrencyCode;
+                        From_CurrencyName_TextBlock.Text = $"({currency.ExchangeRate.FromCurrencyName})";
+                        To_CurrencyName_TextBlock.Text = $"({currency.ExchangeRate.ToCurrencyName})";
+                        Rate_TextBlock.Text = currency.ExchangeRate.RateString;
+                        BidPrice_TextBlock.Text = currency.ExchangeRate.BidPriceString;
+                        AskPrice_TextBlock.Text = currency.ExchangeRate.AskPriceString;
+                        LastRefreshed_TextBlock.Text = currency.ExchangeRate.LastRefreshed.ToString("HH\\:mm\\:ss");
+                    });
+                }
+
+                else
+                {
+                    Error();
+                }
+            }
+
+            catch (Exception)
+            {
+
+                Error();
+            }
             abc.Text = "Обновление в";
         }
 
-        private void Error()
+        private void Error() // Отображение ошибки
         {
-            System.Windows.MessageBox.Show("Неверный пароль в кэше, перезайдите в систему", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-
-            File.WriteAllText(path, string.Empty);
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
+            System.Windows.MessageBox.Show("Ошибка со стороны сервиса API, либо неверно введённые пользовательские настройки. " +
+                "Проверьте настройки и перезапустите виджет", "Ошибка | Currency", MessageBoxButton.OK, MessageBoxImage.Error);
             Close();
         }
 
-        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // Перемещение окна
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -89,15 +98,16 @@ namespace WidgetAPI
             }
         }
 
-        private async void Refrash_Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e)
+        private async void Refrash_Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e) // Обновление данных по кнопке
         {
             await UpdateDataFromApi();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e) // После отрисовки окна
         {
             this.FadeIn();
 
+            // Удаление окна из Alt+Tab
             WindowInteropHelper wndHelper = new WindowInteropHelper(this);
             int exStyle = (int)GetWindowLong(wndHelper.Handle, (int)GetWindowLongFields.GWL_EXSTYLE);
             exStyle |= (int)ExtendedWindowStyles.WS_EX_TOOLWINDOW;
@@ -114,7 +124,7 @@ namespace WidgetAPI
                 Top = top;
             }
         }
-        private async void Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e)
+        private async void Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e) // Закрытие окна по кнопке
         {
             await AnimationHelper.FadeOut2Async(this);
 
@@ -122,7 +132,6 @@ namespace WidgetAPI
             Properties.Settings.Default.MainWindowLeftCurrency = Left;
             Properties.Settings.Default.MainWindowTopCurrency = Top;
             Properties.Settings.Default.Save();
-
 
             Close();
         }

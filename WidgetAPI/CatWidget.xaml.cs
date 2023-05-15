@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -15,25 +16,34 @@ namespace WidgetAPI
     /// </summary>
     public partial class CatWidget : Window
     {
-        string catUri;
+        string СatUri;
         public CatWidget()
         {
             InitializeComponent();
-
             UpdateDataFromApi();
         }
 
-        private async void UpdateDataFromApi()
+        private async void UpdateDataFromApi() // Обновление данных и интерфейса
         {
             AnimationHelper.FadeOut(Cat_Image);
-            catUri = await CatAPILogic.GetRandomCatImageAsync();
+
+            try
+            {
+                СatUri = await CatAPILogic.GetRandomCatImageAsync();
+            }
+
+            catch
+            {
+                await Task.Delay(500);
+                UpdateDataFromApi();
+            }
 
             // Создание нового объекта BitmapImage
             BitmapImage bitmap = new BitmapImage();
 
             // Установка свойства URISource для загрузки изображения из URL
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri(catUri, UriKind.Absolute);
+            bitmap.UriSource = new Uri(СatUri, UriKind.Absolute);
             bitmap.EndInit();
 
             // Установка изображения в элемент управления Image
@@ -48,7 +58,7 @@ namespace WidgetAPI
         }
 
 
-        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e) // Перемещение окна
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -56,15 +66,16 @@ namespace WidgetAPI
             }
         }
 
-        private void Refrash_Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e)
+        private void Refrash_Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e) // Обновление изображения по кнопке
         {
             UpdateDataFromApi();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e) // После отрисовки окна
         {
             this.FadeIn();
 
+            // Удаление окна из Alt+Tab
             WindowInteropHelper wndHelper = new WindowInteropHelper(this);
             int exStyle = (int)GetWindowLong(wndHelper.Handle, (int)GetWindowLongFields.GWL_EXSTYLE);
             exStyle |= (int)ExtendedWindowStyles.WS_EX_TOOLWINDOW;
@@ -81,7 +92,7 @@ namespace WidgetAPI
                 Top = top;
             }
         }
-        private async void Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e)
+        private async void Image_MouseLeftButtonDownAsync(object sender, MouseButtonEventArgs e) // Закрытие окна по кнопке
         {
             await AnimationHelper.FadeOut2Async(this);
 

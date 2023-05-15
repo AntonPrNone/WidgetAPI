@@ -18,7 +18,7 @@
 
                 <Border CornerRadius="30,30,0,0" Background="#19FF0000" MouseDown="OnMouseLeftButtonDown">
                     <Grid>
-                        <TextBlock Text="Валюта" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
+                        <TextBlock Text="Currency" Padding="15,5,5,5" Foreground="White" Margin="5,0,0,0"/>
                         <Image HorizontalAlignment="Right" VerticalAlignment="Center" Source="/img/close.png" Width="15" Height="15" Margin="0,0,17,0" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDownAsync"/>
                     </Grid>
                 </Border>
