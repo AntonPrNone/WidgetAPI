@@ -216,7 +216,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Grid.RowSpan="4" VerticalAlignment="Center" Margin="0,20,0,0">
                                 <TextBlock Text="Код целевой валюты" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,5,5,5" ToolTip="Обозначение целевой валюты" FontSize="14" />
-                                <TextBox Style="{DynamicResource TextBoxStyleCornerRadius}" x:Name="To_Currency_Code_TextBox"  VerticalAlignment="Center" Margin="5,5,5,5" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Страна" Width="50" Text="RUB" BorderBrush="Red" MaxLength="3" CharacterCasing="Upper"/>
+                                <TextBox Style="{DynamicResource TextBoxStyleCornerRadius}" x:Name="To_Currency_Code_TextBox"  VerticalAlignment="Center" Margin="5,5,5,5" Height="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ToolTip="Обозначение целевой валюты" Width="50" Text="RUB" BorderBrush="Red" MaxLength="3" CharacterCasing="Upper"/>
                             </StackPanel>
                             <Button Style="{DynamicResource ButtonStyleCornerRadius}" x:Name="Save_Button" Content="Сохранить" Command="{Binding SaveCommand}" Grid.Row="6" Grid.ColumnSpan="2" Margin="30,10,30,10" Click="Save_Button_ClickAsync" IsDefault="True" BorderBrush="Black" FontSize="14" Width="250"/>
                         </Grid>
