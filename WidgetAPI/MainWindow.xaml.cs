@@ -95,7 +95,7 @@ namespace WidgetAPI
 				}
 
 				// Перезаписываем файл, если он уже существует
-				using (StreamWriter writer = new StreamWriter(path, false, Encoding.Default))
+				using (StreamWriter writer = new StreamWriter(path, false, Encoding.Unicode))
 				{
 					writer.WriteLine(Login_TextBox.Text);
 					writer.Write(Password_TextBox.Password);
