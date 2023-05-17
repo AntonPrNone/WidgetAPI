@@ -327,6 +327,9 @@
     <EmbeddedResource Include="img\ico.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="img\emptyBG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
   <ItemGroup>

@@ -79,8 +79,9 @@ namespace WidgetAPI
 			{
 			    var image = new BitmapImage();
 				image.BeginInit();
-				image.UriSource = new Uri(n.UrlToImage, UriKind.Absolute);
-				image.CacheOption = BitmapCacheOption.OnLoad;
+                if (n.UrlToImage != null) image.UriSource = new Uri(n.UrlToImage, UriKind.Absolute);
+                else image.UriSource = new Uri(@".\img\emptyBG.png", UriKind.Relative);
+                image.CacheOption = BitmapCacheOption.OnLoad;
 				image.EndInit();
 
 				imageList.Add(image);
